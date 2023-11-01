@@ -12,7 +12,7 @@ def pega_centro(x, y, largura, altura):
     :param altura: altura do objeto
     :return: tupla que contém as coordenadas do centro de um objeto
     """
-    x1 = largura // 2
+    x1 = largura // 2 
     y1 = altura // 2
     cx = x + x1
     cy = y + y1
@@ -21,22 +21,22 @@ def pega_centro(x, y, largura, altura):
 
 def set_info(detec):
     global carros
-    for (x, y) in detec:
-        if (pos_linha + offset) > y > (pos_linha - offset):
+    for (x, y) in detec: # Percorre a lista de objetos detectados
+        if (pos_linha + offset) > y > (pos_linha - offset): # Se o objeto estiver na linha 
             carros += 1
-            cv2.line(frame1, (25, pos_linha), (1200, pos_linha), (0, 127, 255), 3)
-            detec.remove((x, y))
-            print("Carros detectados até o momento: " + str(carros))
+            cv2.line(frame1, (25, pos_linha), (1200, pos_linha), (0, 127, 255), 3) # Linha de contagem
+            detec.remove((x, y)) # Para não contar o mesmo carro mais de uma vez
+            print("Carros detectados até o momento: " + str(carros))  
 
 
-def show_info(frame1, dilatada):
-    text = f'Carros: {carros}'
-    cv2.putText(frame1, text, (450, 70), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 5)
-    cv2.imshow("Video Original", frame1)
-    cv2.imshow("Detectar", dilatada)
+def show_info(frame1, dilatada): # Mostra as informações na tela
+    text = f'Carros: {carros}' 
+    cv2.putText(frame1, text, (450, 70), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 5) # Texto na tela
+    cv2.imshow("Video Original", frame1) # Mostra o vídeo original
+    cv2.imshow("Detectar", dilatada) # Mostra o vídeo com a subtração
 
 
-carros = caminhoes = 0
+carros =  0 
 cap = cv2.VideoCapture('video.mp4')  # Pega o vídeo
 subtracao = cv2.bgsegm.createBackgroundSubtractorMOG()  # Pega o fundo e subtrai do que está se movendo
 
