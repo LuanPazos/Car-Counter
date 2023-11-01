@@ -13,20 +13,20 @@ def pega_centro(x, y, largura, altura):
     :return: tupla que contém as coordenadas do centro de um objeto
     """
     x1 = largura // 2 
-    y1 = altura // 2
-    cx = x + x1
-    cy = y + y1
-    return cx, cy
+    y1 = altura // 2 
+    cx = x + x1 # Pega o centro do objeto na cordenada x
+    cy = y + y1 # Pega o centro do objeto na cordenada y
+    return cx, cy # Retorna o centro do objeto
 
 
 def set_info(detec):
-    global carros
+    global carros 
     for (x, y) in detec: # Percorre a lista de objetos detectados
-        if (pos_linha + offset) > y > (pos_linha - offset): # Se o objeto estiver na linha 
+        if (pos_linha + offset) > y > (pos_linha - offset): # Se o objeto estiver na linha:
             carros += 1
             cv2.line(frame1, (25, pos_linha), (1200, pos_linha), (0, 127, 255), 3) # Linha de contagem
             detec.remove((x, y)) # Para não contar o mesmo carro mais de uma vez
-            print("Carros detectados até o momento: " + str(carros))  
+            print("Carros detectados até o momento: " + str(carros))
 
 
 def show_info(frame1, dilatada): # Mostra as informações na tela
