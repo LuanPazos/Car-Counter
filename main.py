@@ -32,11 +32,11 @@ def set_info(detec):
             print("carros detectados até o momento: " + str(cars))
 
 
-def show_info(frame1, dilatada): # Mostra as informações na tela
+def show_info(frame1, dilatado): # Mostra as informações na tela
     text = f'carros: {cars}'
     cv2.putText(frame1, text, (450, 70), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 5) # Texto na tela
     cv2.imshow("Video Original", frame1) # Mostra o vídeo original
-    cv2.imshow("Detectar", dilatada) # Mostra o vídeo com a subtração
+    cv2.imshow("Video Subtraido e Dilatado", dilatado) # Mostra o vídeo com a subtração
 
 
 while True:
@@ -49,10 +49,10 @@ while True:
     dilat = cv2.dilate(img_sub, np.ones((5, 5)))  # "Engrossa" o que sobrou da subtração
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (
         5, 5))  # Cria uma matriz 5x5, em que o formato da matriz entre 0 e 1 forma uma elipse dentro
-    dilatada = cv2.morphologyEx(dilat, cv2.MORPH_CLOSE, kernel)  # Tenta preencher todos os "buracos" da imagem
-    dilatada = cv2.morphologyEx(dilatada, cv2.MORPH_CLOSE, kernel)
+    dilatado = cv2.morphologyEx(dilat, cv2.MORPH_CLOSE, kernel)  # Tenta preencher todos os "buracos" da imagem
+    dilatado = cv2.morphologyEx(dilatado, cv2.MORPH_CLOSE, kernel)
 
-    contorno, img = cv2.findContours(dilatada, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    contorno, img = cv2.findContours(dilatado, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     cv2.line(frame1, (25, pos_linha), (1200, pos_linha), (255, 127, 0), 3)
     for (i, c) in enumerate(contorno):
         (x, y, w, h) = cv2.boundingRect(c)
@@ -66,7 +66,7 @@ while True:
         cv2.circle(frame1, centro, 4, (0, 0, 255), -1)
 
     set_info(detec)
-    show_info(frame1, dilatada)
+    show_info(frame1, dilatado)
 
     if cv2.waitKey(1) == 27: # Tecla Esc para sair
         break

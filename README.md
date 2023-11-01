@@ -1,7 +1,7 @@
-# Vehicle Counter
-Contador de veículos em Python e OpenCV.
+# Contador de Veiculos
+Contador de veículos em movimento usando Python e OpenCV.
 <br><br>
-Você vai precisar:
+Bibliotecas necessarias de instalação:
 - OpenCV `pip install opencv-python`
 - Numpy `pip install numpy`
 - Contrib `pip install opencv-contrib-python`
