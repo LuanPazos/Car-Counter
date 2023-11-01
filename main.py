@@ -12,15 +12,15 @@ def pega_centro(x, y, largura, altura):
     :param altura: altura do objeto
     :return: tupla que contém as coordenadas do centro de um objeto
     """
-    x1 = largura // 2 
-    y1 = altura // 2 
+    x1 = largura // 2
+    y1 = altura // 2
     cx = x + x1 # Pega o centro do objeto na cordenada x
     cy = y + y1 # Pega o centro do objeto na cordenada y
     return cx, cy # Retorna o centro do objeto
 
 
 def set_info(detec):
-    global carros 
+    global carros
     for (x, y) in detec: # Percorre a lista de objetos detectados
         if (pos_linha + offset) > y > (pos_linha - offset): # Se o objeto estiver na linha:
             carros += 1
@@ -30,13 +30,13 @@ def set_info(detec):
 
 
 def show_info(frame1, dilatada): # Mostra as informações na tela
-    text = f'Carros: {carros}' 
+    text = f'Carros: {carros}'
     cv2.putText(frame1, text, (450, 70), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 5) # Texto na tela
     cv2.imshow("Video Original", frame1) # Mostra o vídeo original
     cv2.imshow("Detectar", dilatada) # Mostra o vídeo com a subtração
 
 
-carros =  0 
+carros =  0
 cap = cv2.VideoCapture('video.mp4')  # Pega o vídeo
 subtracao = cv2.bgsegm.createBackgroundSubtractorMOG()  # Pega o fundo e subtrai do que está se movendo
 
