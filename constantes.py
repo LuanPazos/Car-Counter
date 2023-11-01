@@ -1,6 +1,6 @@
-largura_min = 80  # Largura minima do retangulo
 altura_min = 80  # Altura minima do retangulo
+largura_min = 80  # Largura minima do retangulo
+pos_linha = 550  # posiçao da linha
 offset = 6  # Erro permitido entre pixel
-pos_linha = 550  # Posição da linha de contagem
-delay = 60  # FPS do vídeo
-detec = []
+delay = 60  # frames por segundo do video
+detec = [] # Lista de veiculos detectados
